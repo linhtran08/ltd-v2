@@ -1,11 +1,12 @@
-import NextAuth from "next-auth"
+import NextAuth, {NextAuthOptions} from "next-auth"
 import SpotifyProvider from "next-auth/providers/spotify"
-export const authOptions = {
+import { env } from 'process';
+export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
     SpotifyProvider({
-      clientId: 'process.env.GITHUB_ID',
-      clientSecret: 'process.env.GITHUB_SECRET',
+      clientId: env.CLIENT_ID ? env.CLIENT_ID : '',
+      clientSecret: env.CLIENT_SECRET ? env.CLIENT_SECRET : '',
     }),
     // ...add more providers here
   ],
